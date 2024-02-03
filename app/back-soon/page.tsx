@@ -98,7 +98,7 @@ export default function Home() {
       after:bg-gradient-conic after:from-pink-800 after:via-purple-800 after:content-[''] after:blur-2xl after-animate"
         />
         <span className="text-5xl z-50 bg-blur drop-shadow-2xl">
-          starting soon
+          be back soon :)
         </span>
       </div>
       <div
