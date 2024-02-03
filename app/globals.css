@@ -44,6 +44,10 @@ body {
   animation: pulse 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+.animate {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
 @keyframes pulse {
   0% {
     -webkit-transform: rotate(0deg);
