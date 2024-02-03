@@ -84,6 +84,7 @@ export default function Home() {
       before:dark:from-transparent before:dark:to-fuchsia-400 before:dark:opacity-45 after:dark:from-fuchsia-400 after:dark:via-slate-600
       after:dark:opacity-100 before:lg:h-[320px] before:lg:w-[480px] z-[-1] after:animate-pulse"
       >
+        <span className="absolute rounded-full bg-gradient-radial from-black to-transparent blur-xl -translate-x-[8.4rem] translate-y-12 h-[350px] w-[550px] z-[-49]" />
         <span
           className="relative flex place-items-center before:absolute before:h-[180px] before:w-[280px] 
       before:-translate-x-[-200px] before:translate-y-[30px] before:rounded-full before:bg-gradient-radial before:from-pink-500 

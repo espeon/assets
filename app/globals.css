@@ -16,6 +16,13 @@
   }
 }
 
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
 .spin {
   animation: spinX 100s cubic-bezier(0.57, 0.55, 0.35, 0.84) infinite;
 }
