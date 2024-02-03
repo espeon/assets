@@ -102,7 +102,7 @@ export default function Home() {
         </span>
       </div>
       <div
-        className={`absolute translate-y-24 text-xl drop-shadow-2xl transition-all duration-500 opacity-${track ? 1 : 0}`}
+        className={`absolute translate-y-20 text-2xl drop-shadow-2xl transition-all duration-500 opacity-${track ? 1 : 0}`}
       >
         <CrossFade
           contentKey={track ? track.name + track.artist : "none"}

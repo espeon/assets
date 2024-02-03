@@ -65,7 +65,7 @@ export default function Home() {
   }, []);
   return (
     <main className="flex min-h-screen min-w-screen flex-col items-center justify-center p-24 transition-all text-white overflow-clip">
-      <div className="absolute min-h-[155vw] min-w-[155vw] -z-50 spin blur-2xl brightness-[25%]">
+      <div className="absolute min-h-[155vw] min-w-[155vw] -z-50 spin blur-2xl brightness-[25%] obs-invis">
         <CrossFade
           contentKey={bgImage.current}
           timeout={5000}
@@ -87,11 +87,11 @@ export default function Home() {
       >
         <div className="relative flex flex-row w-screen items-center justify-center">
           <div className="absolute">
-            <div className="text-3xl">
-              <span className="absolute rounded-full bg-gradient-to-r from-teal-800 to-purple-800 blur-3xl -translate-x-[10rem] -translate-y-24 h-[250px] w-[550px] z-[-49] animate" />
+            <div className="text-5xl text-ellipsis whitespace-nowrap text-nowrap overflow-clip py-10 max-w-full md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-none">
+              <div className="absolute rounded-full bg-gradient-to-r from-teal-800 to-purple-800 blur-3xl -translate-x-[8rem] -translate-y-20 h-[250px] w-[650px] z-[-49] animate" />
               {track ? (
                 <>
-                  <span className="bg-white text-black rounded-full px-3 py-1 mr-1">
+                  <span className="bg-white text-black rounded-full px-4 py-1 mr-1">
                     ♫
                   </span>{" "}
                   {track.name} • {track.artist}
@@ -110,7 +110,7 @@ export default function Home() {
       before:dark:from-transparent before:dark:to-fuchsia-400 before:dark:opacity-45 after:dark:from-fuchsia-400 after:dark:via-slate-600
       after:dark:opacity-100 before:lg:h-[320px] before:lg:w-[480px] z-[-1] after:animate-pulse"
             >
-              <span className="absolute rounded-full bg-gradient-radial from-purple-950 to-transparent blur-xl -translate-x-[8.4rem] translate-y-12 h-[250px] w-[550px] z-[-49]" />
+              <span className="absolute rounded-full bg-gradient-radial transparency-20 from-purple-950 to-transparent blur-xl -translate-x-[6rem] translate-y-2 h-[250px] w-[550px] z-[-49]" />
               <span
                 className="relative flex place-items-center before:absolute before:h-[180px] before:w-[280px] 
       before:-translate-x-[-200px] before:translate-y-[30px] before:rounded-full before:bg-gradient-radial before:from-pink-500 
