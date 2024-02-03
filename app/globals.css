@@ -16,27 +16,8 @@
   }
 }
 
-main {
-  color: rgb(var(--foreground-rgb));
-  background-image: url("https://i.imgur.com/eiR2CBe.jpeg");
-  background-size: 1px 1px;
-  background-repeat: repeat;
-  backdrop-filter: brightness(50%);
-  overflow: clip;
-}
-
-main::before {
-  z-index: -1;
-  animation: spinX 100s linear infinite;
-  content: "";
-  background: url("https://i.imgur.com/eiR2CBe.jpeg") no-repeat center center;
-  position: absolute;
-  left: 0;
-  top: -70vh;
-  width: 150vh;
-  height: 250vh;
-  filter: blur(40px) brightness(50%);
-  overflow: clip;
+.spin {
+  animation: spinX 100s cubic-bezier(0.57, 0.55, 0.35, 0.84) infinite;
 }
 
 @keyframes spinX {

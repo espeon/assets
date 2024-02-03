@@ -1,8 +1,81 @@
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
+import { CrossFade } from "react-crossfade-simple";
+
+interface Track {
+  name: string;
+  artist: string;
+  image_url: string;
+}
+interface BackgroundImage {
+  current: string;
+  previous: string | null;
+}
+
+const FM_KEY = "6f5ff9d828991a85bd78449a85548586";
+const MAIN = "kanb";
+
 export default function Home() {
+  const [track, setTrack] = useState<Track | null>(null);
+  const [bgImage, setBgImage] = useState<BackgroundImage>({
+    current: "https://i.imgur.com/eiR2CBe.jpeg",
+    previous: null,
+  });
+  useEffect(() => {
+    const fetchTrack = () => {
+      console.log("fetching track");
+      fetch(
+        `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${MAIN}&api_key=${FM_KEY}&limit=1&format=json`,
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          const recentTrack = data.recenttracks.track[0];
+          console.log(recentTrack.image.length - 1);
+          console.log(recentTrack.image[recentTrack.image.length - 1]);
+          let image: string =
+            recentTrack.image[recentTrack.image.length - 1]["#text"];
+          if (
+            image.includes(
+              "https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+            )
+          ) {
+            image = "https://i.imgur.com/eiR2CBe.jpeg";
+          }
+          console.log(image);
+          document.documentElement.style.setProperty("--current-image", image);
+          setTrack({
+            name: recentTrack.name,
+            artist: recentTrack.artist["#text"],
+            image_url: image,
+          });
+          setBgImage({
+            current: image,
+            previous: bgImage.current,
+          });
+        })
+        .catch((error) => console.error(error));
+    };
+
+    fetchTrack(); // Fetch immediately on component mount
+    const intervalId = setInterval(fetchTrack, 1000); // Fetch every 1s
+
+    return () => clearInterval(intervalId); // Clean up on component unmount
+  }, []);
   return (
-    <main className="flex min-h-screen max-w-screen flex-row items-center justify-center p-24">
+    <main className="flex min-h-screen min-w-screen flex-col items-center justify-center p-24 transition-all text-white overflow-clip">
+      <div className="absolute min-h-[155vw] min-w-[155vw] -z-50 spin blur-2xl brightness-[25%]">
+        <CrossFade contentKey={bgImage.current} timeout={2000}>
+          <Image
+            src={bgImage.current}
+            alt=""
+            height="20000"
+            width="20000"
+            unoptimized
+          />
+        </CrossFade>
+      </div>
       <div
         className="relative flex place-items-center before:absolute before:h-[350px] before:w-[480px] 
       before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:via-transparent
@@ -22,6 +95,18 @@ export default function Home() {
           Starting soon
         </span>
       </div>
+      {track ? (
+        <>
+          <div className="absolute translate-y-24 text-xl drop-shadow-2xl">
+            <span className="bg-white text-black rounded-full px-2 py-1 mr-1">
+              ♫
+            </span>{" "}
+            {track.name} • {track.artist}
+          </div>
+        </>
+      ) : (
+        <p></p>
+      )}
     </main>
   );
 }
