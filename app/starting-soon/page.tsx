@@ -72,6 +72,7 @@ export default function Home() {
           style={{ backgroundColor: "black" }}
         >
           <Image
+            className="contrast-[96%]"
             src={bgImage.current}
             alt=""
             height="20000"
