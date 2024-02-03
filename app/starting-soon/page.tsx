@@ -66,7 +66,11 @@ export default function Home() {
   return (
     <main className="flex min-h-screen min-w-screen flex-col items-center justify-center p-24 transition-all text-white overflow-clip">
       <div className="absolute min-h-[155vw] min-w-[155vw] -z-50 spin blur-2xl brightness-[25%]">
-        <CrossFade contentKey={bgImage.current} timeout={2000}>
+        <CrossFade
+          contentKey={bgImage.current}
+          timeout={5000}
+          style={{ backgroundColor: "black" }}
+        >
           <Image
             src={bgImage.current}
             alt=""
@@ -96,18 +100,25 @@ export default function Home() {
           Starting soon
         </span>
       </div>
-      {track ? (
-        <>
-          <div className="absolute translate-y-24 text-xl drop-shadow-2xl">
-            <span className="bg-white text-black rounded-full px-2 py-1 mr-1">
-              ♫
-            </span>{" "}
-            {track.name} • {track.artist}
-          </div>
-        </>
-      ) : (
-        <p></p>
-      )}
+      <div
+        className={`absolute translate-y-24 text-xl drop-shadow-2xl transition-all duration-500 opacity-${track ? 1 : 0}`}
+      >
+        <CrossFade
+          contentKey={track ? track.name + track.artist : "none"}
+          timeout={500}
+        >
+          {track ? (
+            <>
+              <span className="bg-white text-black rounded-full px-2 py-1 mr-1">
+                ♫
+              </span>{" "}
+              {track.name} • {track.artist}
+            </>
+          ) : (
+            <div />
+          )}
+        </CrossFade>
+      </div>
     </main>
   );
 }
