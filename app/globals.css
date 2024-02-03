@@ -16,12 +16,54 @@
   }
 }
 
-body {
+main {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-image: url("https://i.imgur.com/eiR2CBe.jpeg");
+  background-size: 1px 1px;
+  background-repeat: repeat;
+  backdrop-filter: brightness(50%);
+  overflow: clip;
+}
+
+main::before {
+  z-index: -1;
+  animation: spinX 100s linear infinite;
+  content: "";
+  background: url("https://i.imgur.com/eiR2CBe.jpeg") no-repeat center center;
+  position: absolute;
+  left: 0;
+  top: -70vh;
+  width: 150vh;
+  height: 250vh;
+  filter: blur(40px) brightness(50%);
+  overflow: clip;
+}
+
+@keyframes spinX {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.before-animate::before {
+  animation: pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.after-animate::after {
+  animation: pulse 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(1turn);
+    transform: rotate(1turn);
+  }
 }
